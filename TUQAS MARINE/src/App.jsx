@@ -73,6 +73,7 @@ function App() {
 
 function AppShell() {
   const location = useLocation()
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' })
@@ -89,22 +90,40 @@ function AppShell() {
           </div>
         </div>
 
-        <nav className="nav" aria-label="Primary">
+        <div className="topbar-actions">
+          <button
+            className="menu-toggle"
+            type="button"
+            aria-expanded={menuOpen}
+            aria-controls="primary-navigation"
+            onClick={() => setMenuOpen((value) => !value)}
+          >
+            <span className="menu-toggle-icon" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
+            <span className="menu-toggle-label">Menu</span>
+          </button>
+
+          <a className="nav-cta" href="tel:+97450101228" onClick={() => setMenuOpen(false)}>
+            00974-50101228
+          </a>
+        </div>
+
+        <nav id="primary-navigation" className={menuOpen ? 'nav nav-open' : 'nav'} aria-label="Primary">
           {navigation.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
               end={item.to === '/'}
+              onClick={() => setMenuOpen(false)}
             >
               {item.label}
             </NavLink>
           ))}
         </nav>
-
-        <a className="nav-cta" href="tel:+97450101228">
-          00974-50101228
-        </a>
       </header>
 
       <main>
@@ -121,14 +140,33 @@ function AppShell() {
       </main>
 
       <footer className="footer">
-        <div>
-          <p className="footer-title">Tuqas Marine International Management Consultant</p>
-          <p className="footer-copy">Premium maritime brokerage, chartering, and consultancy with a global outlook.</p>
+        <div className="footer-brand">
+          <img className="footer-logo" src={logoMark} alt="Tuqas Marine International Management Consultant" />
+          <div>
+            <p className="footer-title">Tuqas Marine International Management Consultant</p>
+            <p className="footer-copy">Premium maritime brokerage, chartering, and consultancy with a global outlook.</p>
+          </div>
         </div>
 
-        <div className="footer-meta">
-          <a href="mailto:info@tuqasmarine.com">info@tuqasmarine.com</a>
-          <a href="tel:+97450101228">00974-50101228</a>
+        <div className="footer-links">
+          <div>
+            <p className="footer-heading">Quick links</p>
+            <div className="footer-meta footer-nav-links">
+              {navigation.slice(0, 5).map((item) => (
+                <NavLink key={item.to} to={item.to}>
+                  {item.label}
+                </NavLink>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p className="footer-heading">Contact</p>
+            <div className="footer-meta footer-contact-links">
+              <a href="mailto:info@tuqasmarine.com">info@tuqasmarine.com</a>
+              <a href="tel:+97450101228">00974-50101228</a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
@@ -137,7 +175,7 @@ function AppShell() {
 
 function HomePage() {
   return (
-    <>
+    <div className="page-flow">
       <section className="hero hero-home" style={{ backgroundImage: `linear-gradient(180deg, rgba(4, 9, 20, 0.2), rgba(4, 9, 20, 0.88)), url(${heroImage})` }}>
         <div className="hero-content hero-content-home">
           <p className="eyebrow">Premium / Luxury Maritime</p>
@@ -200,7 +238,7 @@ function HomePage() {
 
         <img className="feature-image" src={globalReachImage} alt="View over the sea from the top of a ship" />
       </section>
-    </>
+    </div>
   )
 }
 
