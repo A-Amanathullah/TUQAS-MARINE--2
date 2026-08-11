@@ -105,10 +105,6 @@ function AppShell() {
             </span>
             <span className="menu-toggle-label">Menu</span>
           </button>
-
-          <a className="nav-cta" href="tel:+97450101228" onClick={() => setMenuOpen(false)}>
-            00974-50101228
-          </a>
         </div>
 
         <nav id="primary-navigation" className={menuOpen ? 'nav nav-open' : 'nav'} aria-label="Primary">

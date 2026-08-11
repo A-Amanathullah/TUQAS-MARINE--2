@@ -107,15 +107,6 @@
   background: rgba(214, 177, 106, 0.1);
 }
 
-.nav-cta {
-  padding: 0.72rem 1rem;
-  border-radius: 999px;
-  color: var(--text-strong);
-  background: linear-gradient(135deg, rgba(214, 177, 106, 0.28), rgba(214, 177, 106, 0.12));
-  border: 1px solid rgba(214, 177, 106, 0.3);
-  white-space: nowrap;
-}
-
 main {
   flex: 1;
 }
